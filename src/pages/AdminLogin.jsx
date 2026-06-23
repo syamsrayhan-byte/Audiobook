@@ -5,7 +5,7 @@ import { supabase, checkIsAdmin } from "../lib/supabase.js";
 import BrandLogo from "../components/BrandLogo.jsx";
 
 const ADMIN_USERNAME = "HCR.ID";
-const ADMIN_EMAIL = "hcr.id@hcr.local";
+const ADMIN_EMAIL = "admin@hcr.id";
 const ADMIN_PASSWORD = "12345678";
 
 export default function AdminLogin() {
@@ -49,29 +49,54 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 py-12">
-      <div className="glass rounded-2xl w-full max-w-md p-8 shadow-2xl">
-        <div className="flex flex-col items-center gap-3 mb-6">
-          <BrandLogo size={56} />
-          <h1 className="text-2xl font-semibold">Admin HCR.ID</h1>
-          <p className="text-sm text-slate-400">Login khusus administrator</p>
+      <div className="min-h-screen flex items-center justify-center px-6 py-12">
+      <div className="w-full max-w-md">
+        <div className="flex justify-center mb-8">
+          <BrandLogo className="h-12 w-auto" />
         </div>
-        <form onSubmit={submit} className="space-y-4">
-          <div>
-            <label className="text-xs text-slate-400">Username</label>
-            <input required value={username} onChange={(e) => setUsername(e.target.value)} placeholder="HCR.ID" />
+        <div className="glass-card rounded-2xl p-8 brand-glow">
+          <div className="flex items-center gap-2 text-accent mb-3">
+            {/* <ShieldCheck className="h-5 w-5" /> */}
+            <span className="text-xs uppercase tracking-[0.2em]">Admin Area</span>
           </div>
-          <div>
-            <label className="text-xs text-slate-400">Password</label>
-            <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
-          </div>
-          <button type="submit" disabled={loading} className="btn-gold w-full rounded-lg py-2.5">
-            {loading ? "Memproses…" : "Masuk Admin"}
-          </button>
-        </form>
-        <div className="mt-6 text-center text-xs text-slate-500">
-          <Link to="/login" className="hover:text-gold-400">← Kembali ke login peserta</Link>
+          <h1 className="text-2xl font-bold tracking-tight mb-1">Masuk Admin</h1>
+          <p className="text-sm text-muted-foreground mb-6">
+            Dashboard pengelola konten audio afirmasi.
+          </p>
+          <form onSubmit={submit} className="space-y-4">
+            <div className="space-y-2">
+              <label htmlFor="username">Username</label>
+              <input
+                id="username"
+                type="text"
+                // value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="HCR.ID"
+                autoComplete="username"
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                type="password"
+                // value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                autoComplete="current-password"
+                required
+                minLength={6}
+              />
+            </div>
+            <button type="submit" className="w-full h-11 text-base rounded-lg font-semibold bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed" disabled={loading}>
+              {loading ? "Memproses..." : "Masuk"}
+            </button>
+          </form>
         </div>
+        <p className="text-center text-xs text-muted-foreground mt-6">
+          © {new Date().getFullYear()} HCR.ID — Developing Corporate Future Leader
+        </p>
       </div>
     </div>
   );

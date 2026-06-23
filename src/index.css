@@ -9,6 +9,26 @@
   --color-gold-400: #d4b270;
   --color-gold-500: #b8954a;
   --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Gradients */
+
+  --gradient-hero: radial-gradient(1200px 600px at 10% -10%, oklch(0.32 0.12 260 / 0.6), transparent 60%),
+                   radial-gradient(900px 500px at 110% 20%, oklch(0.55 0.18 255 / 0.35), transparent 60%),
+                   linear-gradient(180deg, oklch(0.13 0.04 260), oklch(0.18 0.05 260));
+  --gradient-card: linear-gradient(160deg, oklch(0.24 0.05 260), oklch(0.20 0.05 260));
+  --shadow-glow: 0 20px 60px -20px oklch(0.55 0.20 255 / 0.45);
+  --shadow-soft: 0 10px 40px -15px oklch(0 0 0 / 0.5);
+}
+
+@utility glass-card {
+  background: var(--gradient-card);
+  border: 1px solid oklch(1 0 0 / 0.08);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(8px);
+}
+
+@utility brand-glow {
+  box-shadow: var(--shadow-glow);
 }
 
 html, body, #root { height: 100%; }
